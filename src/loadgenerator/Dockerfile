@@ -18,7 +18,7 @@ FROM base AS builder
 
 COPY requirements.txt .
 
-RUN pip install --prefix="/install" -r requirements.txt
+RUN pip install --prefix="/install" -r requirements.txt -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 
 FROM base
 

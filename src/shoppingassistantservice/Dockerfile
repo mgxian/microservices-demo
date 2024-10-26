@@ -16,14 +16,19 @@ FROM python:3.12.6-slim@sha256:ad48727987b259854d52241fac3bc633574364867b8e20aec
 
 FROM base AS builder
 
-RUN apt-get -qq update \
+RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debian.sources \
+    && sed -i -e 's|security.debian.org/\? |security.debian.org/debian-security |g' \
+    -e 's|security.debian.org|mirrors.ustc.edu.cn|g' \
+    -e 's|deb.debian.org/debian-security|mirrors.ustc.edu.cn/debian-security|g' \
+    /etc/apt/sources.list.d/debian.sources \
+    && apt-get -qq update \
     && apt-get install -y --no-install-recommends \
-        wget g++ \
+    wget g++ \
     && rm -rf /var/lib/apt/lists/*
 
 # get packages
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 
 FROM base
 # Enable unbuffered logging
