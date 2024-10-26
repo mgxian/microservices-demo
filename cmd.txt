@@ -1,0 +1,1 @@
+skaffold run --default-repo harbor.mcdchina.net/tez-module --tail

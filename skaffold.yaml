@@ -103,8 +103,9 @@ build:
   - image: loadgenerator
     context: src/loadgenerator
 manifests:
-  rawYaml:
-  - ./kubernetes-manifests/loadgenerator.yaml
+  kustomize:
+    paths:
+    - kubernetes-manifests/loadgenerator
 deploy:
   kubectl: {}
 profiles:
