@@ -28,6 +28,7 @@ resources:
  - shippingservice.yaml
 components:
 - ../kustomize/components/customize
+- ../kustomize/components/open-telemetry
 # - ../kustomize/components/cymbal-branding
 # - ../kustomize/components/google-cloud-operations
 # - ../kustomize/components/memorystore
